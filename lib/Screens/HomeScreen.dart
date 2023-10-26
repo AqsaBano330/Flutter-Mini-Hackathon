@@ -35,6 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+
           
           backgroundColor: AppColors.lightthemecolor,
         title: StreamBuilder(
@@ -62,6 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
               return CircularProgressIndicator();
             }),
         ),
+        
         body: Container(
           color: AppColors.whitetextcolor,
           child: Column(
@@ -173,6 +175,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             ],
                           ),
                         ),
+
+                        CustomText(fontSize: 20, text: userData["role"]=="donar"? "Other Donars:" :
+                         'Donars:', textColor: AppColors.darkthemecolor, fontWeight: FontWeight.w700,),
                       ],
                     );
                   }
@@ -180,6 +185,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   return CircularProgressIndicator(color: AppColors.darkthemecolor);
                 },
               ),
+              
+
               StreamBuilder(
                 
                 stream: FirebaseFirestore.instance

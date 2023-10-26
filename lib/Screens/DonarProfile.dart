@@ -1,4 +1,5 @@
 import 'package:HackathonApp/Screens/HomeScreen.dart';
+import 'package:HackathonApp/Screens/chat/chat_screen.dart';
 import 'package:HackathonApp/Wigdets/custom_button.dart';
 import 'package:HackathonApp/Wigdets/custom_text.dart';
 import 'package:HackathonApp/conStants/colors.dart';
@@ -83,9 +84,7 @@ class _DonarProfileState extends State<DonarProfile> {
 
                 return Center(
                     child: SingleChildScrollView(
-                  child: Column(
-                  
-                    children: [
+                  child: Column(children: [
                     Container(
                       padding: EdgeInsets.only(bottom: 30),
                       child: CustomText(
@@ -99,7 +98,7 @@ class _DonarProfileState extends State<DonarProfile> {
                         child: ListTile(
                           title: Text("Name:  ${userData["firstname"]}"),
                           trailing: Visibility(
-                            visible: Currentrole =="Manager",
+                            visible: Currentrole == "Manager",
                             child: IconButton(
                                 onPressed: () {
                                   editprofilefieldtoui(
@@ -116,9 +115,29 @@ class _DonarProfileState extends State<DonarProfile> {
                     Container(
                         padding: const EdgeInsets.only(left: 30),
                         child: ListTile(
+                          title:
+                              Text("Blood Group:  ${userData["bloodgroup"]}"),
+                          trailing: Visibility(
+                            visible: Currentrole == "Manager",
+                            child: IconButton(
+                                onPressed: () {
+                                  editprofilefieldtoui(
+                                      "bloodgroup", "Update Blood");
+                                },
+                                icon: Icon(Icons.edit)),
+                          ),
+                        )),
+                    Container(
+                      height: 1,
+                      width: 300,
+                      color: AppColors.darkthemecolor,
+                    ),
+                    Container(
+                        padding: const EdgeInsets.only(left: 30),
+                        child: ListTile(
                             title: Text("Location:  ${userData["address"]}"),
                             trailing: Visibility(
-                              visible: Currentrole =="Manager",
+                              visible: Currentrole == "Manager",
                               child: IconButton(
                                   onPressed: () {
                                     editprofilefieldtoui(
@@ -136,7 +155,7 @@ class _DonarProfileState extends State<DonarProfile> {
                         child: ListTile(
                             title: Text("Contact:  ${userData["contact"]}"),
                             trailing: Visibility(
-                              visible: Currentrole =="Manager",
+                              visible: Currentrole == "Manager",
                               child: IconButton(
                                   onPressed: () {
                                     editprofilefieldtoui(
@@ -154,9 +173,10 @@ class _DonarProfileState extends State<DonarProfile> {
                         child: ListTile(
                             title: Text("Date:  ${userData["date"]}"),
                             trailing: Visibility(
-                            visible: Currentrole =="Manager",
+                              visible: Currentrole == "Manager",
                               child: IconButton(
-                                  onPressed: () {}, icon: Icon(Icons.calendar_month)),
+                                  onPressed: () {},
+                                  icon: Icon(Icons.calendar_month)),
                             ))),
                     Container(
                       height: 1,
@@ -164,7 +184,7 @@ class _DonarProfileState extends State<DonarProfile> {
                       color: AppColors.darkthemecolor,
                     ),
                     Visibility(
-                      visible: Currentrole== "Manager",
+                      visible: Currentrole == "Manager",
                       child: Container(
                         padding: EdgeInsets.only(top: 40),
                         child: CustomButton(
@@ -176,15 +196,22 @@ class _DonarProfileState extends State<DonarProfile> {
                       ),
                     ),
                     Container(
-                        padding: EdgeInsets.only(top: 40),
-                        child: CustomButton(
-                          buttontext: "Contact",
-                          onpressed: () {
-                            
-                          },
-                        ),
+                      padding: EdgeInsets.only(top: 40),
+                      child: CustomButton(
+                        buttontext: "Contact",
+                        onpressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => CustomChatScreen(
+                                  receiverUserEmail: userData["email"],
+                                  receiverUserID: userData["uid"],
+                                  receiverName: userData["firstname"],
+                                ),
+                              ));
+                        },
                       ),
-
+                    ),
                   ]),
                 ));
               }

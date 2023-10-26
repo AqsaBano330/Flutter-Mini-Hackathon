@@ -3,7 +3,6 @@ import 'package:HackathonApp/Wigdets/custom_button.dart';
 import 'package:HackathonApp/Wigdets/custom_text.dart';
 import 'package:HackathonApp/Wigdets/custom_textfield.dart';
 import 'package:HackathonApp/conStants/colors.dart';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -55,7 +54,7 @@ class _ForgetPassState extends State<ForgetPass> {
                   fontSize: 15,
                   fontWeight: FontWeight.w400)),
           Container(
-            padding: EdgeInsets.only(top: 5, bottom: 5),
+            padding: const EdgeInsets.only(top: 5, bottom: 5),
             child: CustomTextField(
                 controller: emailcontroller,
                 obscuretext: false,
@@ -63,7 +62,7 @@ class _ForgetPassState extends State<ForgetPass> {
                 hinttext: " Enter Your Email"),
           ),
           Container(
-            padding: EdgeInsets.only(top: 50),
+            padding: const EdgeInsets.only(top: 50),
             child: CustomButton(
               buttontext: "Send Link",
               onpressed: () {
@@ -72,7 +71,7 @@ class _ForgetPassState extends State<ForgetPass> {
             ),
           ),
           Container(
-            padding: EdgeInsets.only(top: 10),
+            padding: const EdgeInsets.only(top: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
